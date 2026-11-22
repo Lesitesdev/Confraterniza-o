@@ -20,6 +20,64 @@ body {
 
 .page { width: 100%; min-height: 100vh; }
 
+body.awaiting-entry .page {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(.99);
+}
+
+.page {
+  transition: opacity .85s ease, transform .85s ease, visibility .85s;
+}
+
+.entry-screen {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(84, 15, 95, .44), transparent 58%),
+    linear-gradient(160deg, #090610, #180b2b 55%, #080713);
+  text-align: center;
+  transition: opacity .7s ease, visibility .7s;
+}
+
+.entry-screen.is-dismissed {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.entry-content { width: min(100%, 420px); }
+.entry-ornament { display: block; margin-bottom: 20px; color: var(--pink-light); font-size: 34px; text-shadow: 0 0 18px var(--pink); }
+.entry-content .eyebrow { margin-bottom: 16px; }
+.entry-content h2 { font-size: clamp(40px, 11vw, 58px); }
+.entry-content h2 em { font-style: italic; }
+.entry-copy { margin: 18px 0 28px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+.enter-button {
+  min-width: 210px;
+  min-height: 58px;
+  padding: 14px 28px;
+  border: 1px solid var(--pink-light);
+  border-radius: 999px;
+  background: linear-gradient(110deg, #ed168e, #c90aa6);
+  color: var(--cream);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(255, 57, 200, .8), 0 0 36px rgba(255, 57, 200, .36);
+  transition: transform .2s, box-shadow .2s;
+  touch-action: manipulation;
+}
+
+.enter-button:hover { transform: translateY(-2px); box-shadow: 0 0 18px rgba(255, 57, 200, .95), 0 0 44px rgba(255, 57, 200, .46); }
+.enter-button:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+.enter-button:disabled { cursor: wait; opacity: .8; }
+
 .invitation {
   position: relative;
   display: flex;
@@ -125,6 +183,32 @@ h2 em { color: var(--pink); font-weight: 600; text-shadow: 0 0 15px rgba(255, 57
 .date-card span { margin-top: 7px; color: var(--pink-light); font-size: 10px; font-weight: 700; letter-spacing: .14em; }
 .date-divider { color: var(--pink-light); font-family: Georgia, serif; font-style: italic; }
 .date-card > p { flex-basis: 100%; margin: -5px 0 0; color: var(--muted); font-size: 10px; letter-spacing: .25em; }
+
+.music-control { display: grid; justify-items: center; gap: 7px; margin: 0 auto 15px; }
+
+.music-button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border: 1px solid var(--pink-light);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--cream);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 9px rgba(255, 57, 200, .55);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+
+.music-button > span { color: var(--pink-light); font-size: 17px; }
+.music-button:hover { background: rgba(91, 13, 91, .9); box-shadow: 0 0 14px rgba(255, 57, 200, .8); transform: translateY(-1px); }
+.music-button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.music-status { max-width: 430px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.4; text-shadow: 0 1px 5px #000; }
 
 .fee-note {
   max-width: 570px;
